@@ -12,17 +12,21 @@ export class App extends Component {
     bad: 0,
   };
 
-  clickGood = () => {
-    this.setState(prevState => ({ good: (prevState.good += 1) }));
+  onGetFeedback = value => {
+    this.setState(prevState => ({ [value]: (prevState[value] += 1) }));
   };
 
-  clickNeutral = () => {
-    this.setState(prevState => ({ neutral: (prevState.neutral += 1) }));
-  };
+  // clickGood = (value) => {
+  //   this.setState((prevState) => ({ [value]: (prevState[value] += 1) }));
+  // };
 
-  clickBad = () => {
-    this.setState(prevState => ({ bad: (prevState.bad += 1) }));
-  };
+  // clickNeutral = () => {
+  //   this.setState(prevState => ({ neutral: (prevState.neutral += 1) }));
+  // };
+
+  // clickBad = () => {
+  //   this.setState(prevState => ({ bad: (prevState.bad += 1) }));
+  // };
 
   countTotalFeedback = () => {
     const { good, neutral, bad } = this.state;
@@ -41,13 +45,16 @@ export class App extends Component {
 
   render() {
     const total = this.countTotalFeedback();
+    const names = Object.keys(this.state);
     return (
       <div className={css.container}>
         <Section title="Please leave feedback">
           <FeedbackOptions
-            clickGood={this.clickGood}
-            clickNeutral={this.clickNeutral}
-            clickBad={this.clickBad}
+            onGetFeedback={this.onGetFeedback}
+            names={names}
+            // clickGood={this.clickGood}
+            // clickNeutral={this.clickNeutral}
+            // clickBad={this.clickBad}
           />
         </Section>
 

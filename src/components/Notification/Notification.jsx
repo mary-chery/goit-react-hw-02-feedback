@@ -1,4 +1,4 @@
-// import css from './Statistics.module.css';
+import PropTypes from 'prop-types';
 
 export const Notification = ({ message }) => {
   return (
@@ -6,4 +6,8 @@ export const Notification = ({ message }) => {
       <p>{message}</p>
     </>
   );
+};
+
+Notification.propTypes = {
+  message: PropTypes.string.isRequired,
 };

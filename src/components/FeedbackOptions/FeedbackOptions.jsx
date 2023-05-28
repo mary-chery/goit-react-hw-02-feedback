@@ -1,21 +1,27 @@
 import css from '../Statistics/Statistics.module.css';
+import PropTypes from 'prop-types';
 
-export const FeedbackOptions = ({ clickGood, clickNeutral, clickBad }) => {
+export const FeedbackOptions = ({ onGetFeedback, names }) => {
   return (
     <>
-      <button className={css.feedbackButton} type="button" onClick={clickGood}>
-        GOOD
-      </button>
-      <button
-        className={css.feedbackButton}
-        type="button"
-        onClick={clickNeutral}
-      >
-        NEUTRAL
-      </button>
-      <button className={css.feedbackButton} type="button" onClick={clickBad}>
-        BAD
-      </button>
+      <ul>
+        {names.map(name => (
+          <li key={name}>
+            <button
+              type="button"
+              className={css.feedbackButton}
+              onClick={() => onGetFeedback(name)}
+            >
+              {name}
+            </button>
+          </li>
+        ))}
+      </ul>
     </>
   );
+};
+
+FeedbackOptions.propTypes = {
+  onLeaveFeedback: PropTypes.func.isRequired,
+  names: PropTypes.arrayOf(PropTypes.string).isRequired,
 };
